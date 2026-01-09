@@ -8,6 +8,20 @@ The Future of Style - An AI-powered personal stylist and digital wardrobe manage
 
 Smart Wardrobe AI digitizes your closet, allowing you to manage your clothing items, view them in interactive 3D, and receive personalized outfit recommendations tailored to your style, the weather, and your schedule.
 
+
+ 📸 Showcase
+
+| Landing Page | Upload |
+|:---:|:---:|
+| ![Landing](/public/images/screenshots/landing-hero.png) | ![Upload](/public/images/screenshots/upload-page.png) |
+
+| Wardrobe | Features |
+|:---:|:---:|
+| ![Wardrobe](/public/images/screenshots/my-wardrobe.png) | ![Features](/public/images/screenshots/features.png) |
+
+![Style Analysis](/public/images/screenshots/style-analysis.png)
+*AI-Powered Style Analysis*
+
 ✨ Features
 
 -   🤖 AI Stylist: Generates daily outfit suggestions based on your wardrobe and external factors.
