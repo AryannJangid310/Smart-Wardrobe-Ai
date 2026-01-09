@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  items         ClothingItem[]
+  outfits       Outfit[]
+  calendarEntries CalendarEntry[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ClothingItem {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  imageUrl    String
+  category    String
+  color       String?
+  attributes  Json?
+  outfits     Outfit[] @relation(fields: [outfitIds], references: [id])
+  outfitIds   String[] @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Outfit {
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  userId          String          @db.ObjectId
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items           ClothingItem[]  @relation(fields: [itemIds], references: [id])
+  itemIds         String[]        @db.ObjectId
+  matchScore      Int
+  createdAt       DateTime        @default(now())
+  calendarEntries CalendarEntry[]
+}
+
+model CalendarEntry {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  date      DateTime
+  userId    String   @db.ObjectId
+  outfitId  String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  outfit    Outfit   @relation(fields: [outfitId], references: [id])
+  createdAt DateTime @default(now())
+}
